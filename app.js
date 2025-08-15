@@ -320,11 +320,11 @@ const quizData = [
     },
     {
         question: "Màu yêu thích của bé là gì?",
-        options: ["Hồng", "Xanh dương", "Tím"]
+        options: ["Hồng", "Cam", "Tím"]
     },
     {
         question: "Món ăn vặt bé thích nhất?",
-        options: ["Bánh tráng trộn", "Khoai tây chiên", "Kem"]
+        options: ["Bánh tráng", "Gà KFC", "Kem"]
     }
 ];
 
@@ -363,4 +363,5 @@ function nextQuestion() {
 
 loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
+
   
