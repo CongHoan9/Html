@@ -139,10 +139,6 @@
     
 }
 
-#quizQuestion {
-    margin: 2px 0px;
-}
-
 .quiz-header {
     display: flex;
     justify-content: space-between;
@@ -211,5 +207,6 @@
     background: #16a34a;
 
 }
+
 
 
