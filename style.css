@@ -1,0 +1,223 @@
+/* Floating hearts animation */
+
+a[href*="somee.com"],
+iframe[src*="somee.com"],
+img[src*="somee.com"],
+script[src*="somee.com"],
+link[href*="somee.com"],
+div[style*="height: 65px"],
+div[onmouseover="S_ssac();"][onmouseout="D_ssac();"],
+div[style*="z-index: 2147483647"][style*="position: fixed"][style*="background-color: #202020"] {
+    display: none !important;
+}
+
+@keyframes multiGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 50% 25%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 50% 75%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: translate(0, 0) rotate(var(--angle));
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--dx), var(--dy)) rotate(var(--angle));
+        opacity: 0;
+    }
+}
+
+.animated-gradient {
+    background: linear-gradient(45deg, #ffe4e6 0%, #ffccd5 25%, #ffb6c1 50%, #ff99ac 75%, #ff7f9c 100%);
+    background-size: 200% 200%;
+    animation: multiGradient 10s ease infinite;
+}
+
+#bg-blur {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(20px);
+    transform: scale(1.1);
+    transition: background-image 2s ease-in-out;
+}
+
+#slide-caption {
+    transition: opacity 0.7s ease-in-out;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: .3;
+    }
+
+    60% {
+        opacity: .9;
+    }
+
+    100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
+}
+
+/* Fireworks sparks */
+.spark {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: currentColor;
+    animation: boom 900ms ease-out forwards;
+}
+
+@keyframes boom {
+    0% {
+        transform: translate(0, 0) scale(.8);
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(.4);
+        opacity: 0;
+    }
+}
+
+/* Slideshow image layers */
+.slide-img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity .7s ease;
+}
+
+.slide-img.active {
+    opacity: 1;
+}
+
+/* Modal state helpers toggled by JS */
+.modal-open {
+    pointer-events: auto !important;
+}
+
+.modal-open #gift-overlay {
+    opacity: 1 !important;
+}
+
+.modal-open #gift-card {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+}
+
+.quiz {
+    background: #ffeef4;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-counter {
+    font-weight: bold;
+    margin-bottom: 10px;
+    
+}
+
+#quizQuestion {
+    margin: 2px 0px;
+    margin-bottom: 10px;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quiz-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.quiz-options button {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.1);
+    flex: 1;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.quiz-options button:hover {
+    background: #fdd7e4b3; }
+
+.music-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.music-item:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.music-title {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.music-play-btn {
+    background: #f43f5e;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.heart {
+    position: absolute;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.music-play-btn.playing {
+    background: #16a34a;
+}

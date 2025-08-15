@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iu miuu ♡</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="min-h-screen relative animated-gradient">
+        <div id="bg-blur" class="fixed inset-0 z-0"></div>
+        <div id="hearts-container" class="relative inset-0 overflow-hidden pointer-events-none z-40"></div>
+        <header class="sticky top-0 z-30 backdrop-blur-md bg-white/40 border-b border-white/40">
+            <div class="mx-auto max-w-3xl px-4 py-3 flex items-center justify-between">
+                <div id="title-names" class="font-semibold"> Bé ♥ Miuu</div>
+                <div class="flex items-center gap-2">
+                    <button id="btn-audio" class="rounded-full px-3 py-1.5 backdrop-blur-md border-b border-white/40 bg-white/40 shadow text-sm">♫ Nhạc</button>
+                    <button id="btn-gift" class="rounded-full px-3 py-1.5 bg-rose-500 text-white shadow text-sm">♡ Mở quà</button>
+                </div>
+            </div>
+        </header>
+        <main class="relative mx-auto max-w-3xl px-4">
+            <section class="pt-10 sm:pt-14 text-center">
+                <h1 id="hero-title" class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-3 text-rose-700 drop-shadow">Gửi bảo bối của bé ♥</h1>
+                <p id="hero-subtitle" class="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto">Trang nhỏ này là của riêng chúng mình</p>
+                <div class="mt-6 grid grid-cols-3 gap-3 text-center">
+                    <div class="rounded-2xl p-4 backdrop-blur-md border-b border-white/40 bg-white/40 shadow">
+                        <div id="days-together" class="text-2xl font-bold">0</div>
+                        <div class="text-xs opacity-70">Ngày bên nhau</div>
+                    </div>
+                    <div class="rounded-2xl p-4 backdrop-blur-md border-b border-white/40 bg-white/40 shadow">
+                        <div class="text-2xl font-bold">∞</div>
+                        <div class="text-xs opacity-70">Nụ hun gió</div>
+                    </div>
+                    <div class="rounded-2xl p-4 backdrop-blur-md border-b border-white/40 bg-white/40 shadow">
+                        <div class="text-2xl font-bold">Miu</div>
+                        <div class="text-xs opacity-70">Là duy nhất</div>
+                    </div>
+                </div>
+            </section>
+            <section class="mt-10">
+                <div id="slideshow" class="relative w-full aspect-[4/5] sm:aspect-video overflow-hidden rounded-3xl shadow-lg">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-5 text-white z-10">
+                        <p id="slide-caption" class="text-sm"></p>
+                    </div>
+                    <button id="prev-slide"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 backdrop-blur-md border-b border-white/40 bg-white/40 backdrop-blur px-2 py-2 rounded-full shadow z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11 1 3 8l8 7V1z" />
+                        </svg>
+                    </button>
+                    <button id="next-slide"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 backdrop-blur-md border-b border-white/40 bg-white/40 backdrop-blur px-2 py-2 rounded-full shadow z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M5 1l8 7-8 7V1z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-4 text-center">
+                    <button id="btn-gift-2"
+                        class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 backdrop-blur-md border-b border-white/40 bg-white/40 shadow hover:shadow-md active:scale-[.98]">
+                        <span>♡ Mở quà lần nữa</span>
+                    </button>
+                </div>
+            </section>
+            <section class="mt-10">
+                <div class="rounded-3xl p-5 backdrop-blur-md border-b border-white/40 bg-white/40 shadow">
+                    <div class="quiz-header">
+                        <span class="text-xl font-semibold mb-2">♡ Đếm ngược</span>
+                        <span class="font-bold mb-[10px]">04/04/2025</span>
+                    </div>   
+                    <div id="countdown" class="grid grid-cols-4 gap-2 text-center"></div>
+                </div>
+            </section>
+            <section class="mt-10">
+                <div class="rounded-3xl p-5 backdrop-blur-md border-b border-white/40 bg-white/40 shadow">
+                    <h3 id="letter-title" class="text-xl font-semibold mb-2">♡ Thư gửi Miuu</h3>
+                    <p id="letter-text" class="leading-relaxed whitespace-pre-wrap">Này bảo bối của bé, I love youu!</p>
+                </div>
+            </section>
+            <section class="mt-10">
+                <div class="rounded-3xl p-5 backdrop-blur-md border-b border-white/40 bg-white/40 shadow">
+                    <div class="quiz-header">
+                        <span class="text-xl font-semibold mb-3">♡ Mini quiz nèe</span>
+                        <span class="quiz-counter">Câu <span id="quizNumber">1</span>/<span id="quizTotal"></span></span>
+                    </div>
+                    <p id="quizQuestion"></p>
+                    <div id="quizOptions" class="quiz-options"></div>
+                </div>
+            </section>
+            <section class="mt-10">
+                <h3 class="text-xl font-semibold mb-3">♥ Nhiệm vụ của Miuu</h3>
+                <div id="tickets" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+            </section>
+            <section class="mt-10">
+                <div class="rounded-3xl p-5 backdrop-blur-md border-b border-white/40 bg-white/40 shadow">
+                    <h3 class="text-xl font-semibold mb-3">♫ Danh sách nhạc</h3>
+                    <ul id="music-list" class="space-y-2"></ul>
+                    <audio id="bg-audio" autoplay muted preload="auto" preload="none"></audio>
+                </div>
+            </section>
+            <footer class="mt-10 pb-10 text-center text-xs text-gray-600">
+                <span id="footer-text">Bé dành tặng Miuu. Nếu miu thấy trang này, nghĩa là bé đang nhớ miuu đó ♡</span>
+            </footer>
+        </main>
+        <div id="gift-modal" class="fixed inset-0 hidden items-center justify-center bg-black/50 backdrop-blur-sm z-50 px-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-6 relative">
+                <h3 class="text-xl font-semibold mb-2">Bất ngờ cho Miuu ♡</h3>
+                <p class="text-sm text-gray-600 mb-4">Trước khi sự kiên Xsuit kết thúc, nếu bé sở hữu hết đồ thì bé sẽ quay đến mốc 300 lucky và tặng Miuu thánh giáp nhaa, nếu Miuu ngại thì có thể nạp cho bé để bé hoàn thành lucky 300, coi là Miuu mua của bé ♡</p>
+                <button id="btn-close" class="mt-4 w-full rounded-2xl px-4 py-3 bg-rose-500 text-white font-medium">
+                    Đóng
+                </button>
+            </div>    
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
