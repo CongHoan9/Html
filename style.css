@@ -1,16 +1,5 @@
 /* Floating hearts animation */
 
-a[href*="somee.com"],
-iframe[src*="somee.com"],
-img[src*="somee.com"],
-script[src*="somee.com"],
-link[href*="somee.com"],
-div[style*="height: 65px"],
-div[onmouseover="S_ssac();"][onmouseout="D_ssac();"],
-div[style*="z-index: 2147483647"][style*="position: fixed"][style*="background-color: #202020"] {
-    display: none !important;
-}
-
 @keyframes multiGradient {
     0% {
         background-position: 0% 50%;
@@ -220,4 +209,5 @@ div[style*="z-index: 2147483647"][style*="position: fixed"][style*="background-c
 
 .music-play-btn.playing {
     background: #16a34a;
+
 }
