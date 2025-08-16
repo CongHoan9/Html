@@ -26,11 +26,27 @@ const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
 function createFloatingHearts() {
   const c = document.getElementById("hearts-container");
-  c.width = c.offsetWidth;
-  c.height = c.offsetHeight;
   const ctx = c.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
 
-  const W = c.width, H = c.height;
+  function resizeCanvas() {
+    const W = c.offsetWidth;
+    const H = c.offsetHeight;
+    c.width = W * dpr;
+    c.height = H * dpr;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
+    ctx.scale(dpr, dpr); // scale lại đúng tỉ lệ
+
+    return { W, H };
+  }
+
+  let { W, H } = resizeCanvas();
+
+  window.addEventListener("resize", () => {
+    ({ W, H } = resizeCanvas());
+  });
+
   const colors = ["#ffe4e6", "#ffccd5", "#ffb6c1", "#ff99ac", "#ff7f9c"];
   const hearts = [];
 
@@ -46,7 +62,7 @@ function createFloatingHearts() {
     });
   }
 
-function drawHeart(ctx, x, y, size, color) {
+  function drawHeart(ctx, x, y, size, color) {
     ctx.save();
     ctx.translate(x, y);
     ctx.scale(size / 24, size / 24);
@@ -68,7 +84,7 @@ function drawHeart(ctx, x, y, size, color) {
     ctx.clearRect(0, 0, W, H);
     for (const h of hearts) {
       h.y -= h.speed;
-      h.x += h.drift; 
+      h.x += h.drift;
       h.alpha -= 0.001;
 
       ctx.globalAlpha = Math.max(h.alpha, 0);
@@ -425,11 +441,25 @@ function nextQuestion() {
 }
 
 function playConfetti() {
-  const c = document.getElementById('gifts-container');
-  c.width = c.clientWidth = c.offsetWidth;
-  c.height = c.clientHeight = c.offsetHeight;
-  const ctx = c.getContext('2d');
-  const W = c.width, H = c.height;
+  const c = document.getElementById("gifts-container");
+  const ctx = c.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+
+  function resize() {
+    const W = c.offsetWidth;
+    const H = c.offsetHeight;
+    c.width = W * dpr;
+    c.height = H * dpr;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+    return { W, H };
+  }
+
+  let { W, H } = resize();
+  window.addEventListener("resize", () => {
+    ({ W, H } = resize());
+  });
+
   const pieces = [];
   for (let i = 0; i < 80; i++) {
     pieces.push({
@@ -442,16 +472,20 @@ function playConfetti() {
       rot: Math.random() * 360
     });
   }
+
   let stop = false;
-  setTimeout(() => stop = true, 4000);
+  setTimeout(() => (stop = true), 4000);
+
   function frame() {
     ctx.clearRect(0, 0, W, H);
     let active = false;
+
     for (const p of pieces) {
       p.x += p.vx;
       p.y += p.vy;
       p.vy += 0.06;
       p.rot += 6;
+
       if (p.y > H + 20) {
         if (!stop) {
           p.y = -20;
@@ -461,13 +495,15 @@ function playConfetti() {
       } else {
         active = true;
       }
+
       ctx.save();
       ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.rotate((p.rot * Math.PI) / 180);
       ctx.fillStyle = p.color;
       ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 0.6);
       ctx.restore();
     }
+
     if (active) requestAnimationFrame(frame);
     else ctx.clearRect(0, 0, W, H);
   }
@@ -478,6 +514,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
