@@ -78,7 +78,7 @@ function renderCountdown() {
         ];
         el.innerHTML = data.map(
             x => `
-            <div class="rounded-2xl p-3  backdrop-blur-md border-b border-white/40 bg-white/10 shadow-sm">
+            <div class="card rounded-2xl p-3  backdrop-blur-md border-b border-white/40 bg-white/10 shadow-sm">
                 <div class="text-2xl font-bold">${String(x.v).padStart(2, "0")}</div>
                 <div class="text-xs opacity-70">${x.t}</div>
             </div>`
@@ -385,6 +385,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
