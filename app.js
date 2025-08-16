@@ -32,7 +32,7 @@ function createFloatingHearts() {
         const heart = document.createElement("div");
         heart.className = "fixed bottom-[-40px]";
         heart.style.left = `${5 + Math.random() * 90}%`;
-        heart.style.animation = `floatUp 8s ${i * 0.5}s linear infinite`;
+        heart.style.animation = `floatUp 8s ${i}s linear infinite`;
 
         const size = 20 + Math.random() * 20;
         const color = colors[Math.floor(Math.random() * colors.length)];
@@ -365,3 +365,4 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
