@@ -145,7 +145,7 @@
     align-items: center;
 }
 
-.quiz-options {
+#quizQuestion {
     opacity: 0.7;
 }
 
@@ -211,6 +211,7 @@
     background: #16a34a;
 
 }
+
 
 
 
