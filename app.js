@@ -276,6 +276,29 @@ function initAudio() {
     });
 }
 
+function initCard() {
+    document.addEventListener("DOMContentLoaded", boot, () => {
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', function (e) {
+            const rect = card.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const dx = e.clientX - cx;
+            const dy = e.clientY - cy;
+            const rx = (dy / rect.height) * -12;
+            const ry = (dx / rect.width) * 12;
+            card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
+        });
+    
+        card.addEventListener('mouseleave', function () {
+            card.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0)`;
+        });
+    });
+})
+
+}
 
 const btnGift = document.getElementById("btn-gift");
 const btnGift2 = document.getElementById("btn-gift-2");
@@ -311,6 +334,7 @@ function boot() {
     initSlideshow();
     renderCountdown();
     renderTickets();
+    initCard();
 }
 
 const quizData = [
@@ -365,6 +389,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
