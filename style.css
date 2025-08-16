@@ -95,6 +95,30 @@
     }
 }
 
+.heart-left, .heart-right  {
+  transform-origin: center;
+}
+
+.heart-left {
+  animation: swing-left 1s infinite alternate ease-in-out;
+}
+
+.heart-right {
+  animation: swing-right 1s infinite alternate ease-in-out;
+}
+
+@keyframes swing-left {
+  0% { transform: rotate(-10deg); }
+  50% { transform: rotate(-5deg); }
+  100% { transform: rotate(-10deg); }
+}
+
+@keyframes swing-right {
+  0% { transform: rotate(10deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(10deg); }
+}
+
 .card {
     will-change: transform;
     transform-style: preserve-3d;
@@ -218,6 +242,7 @@
     background: #16a34a;
 
 }
+
 
 
 
