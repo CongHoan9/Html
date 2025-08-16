@@ -62,10 +62,8 @@ function createFloatingHearts() {
     const oldW = W, oldH = H;
     ({ W, H } = resizeCanvas());
     const scaleX = W / oldW;
-    const scaleY = H / oldH;
     for (const h of hearts) {
       h.x *= scaleX;
-      h.y *= scaleY;
     }
   });
 
@@ -464,16 +462,13 @@ function playConfetti() {
 
     c.width = W * dpr;
     c.height = H * dpr;
-    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(dpr, dpr);
 
-    // scale lại vị trí các hạt nếu đã có kích thước cũ
     if (oldW && oldH) {
       const scaleX = W / oldW;
-      const scaleY = H / oldH;
       for (const p of pieces) {
         p.x *= scaleX;
-        p.y *= scaleY;
       }
     }
   }
@@ -535,6 +530,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
