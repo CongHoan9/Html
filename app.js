@@ -303,17 +303,19 @@ const btnClose = document.getElementById("btn-close");
 
 btnGift2.addEventListener("click", () => {
     modal.classList.remove("hidden");
-modal.classList.add("flex"); 
+    modal.classList.add("flex"); 
+    playConfetti();
 });
 
 btnGift.addEventListener("click", () => {
     modal.classList.remove("hidden");
     modal.classList.add("flex"); 
+    playConfetti();
 });
 
 btnClose.addEventListener("click", () => {
     modal.classList.add("hidden");
-modal.classList.remove("flex");
+    modal.classList.remove("flex");
 });
 
 modal.addEventListener("click", (e) => {
@@ -380,11 +382,38 @@ function nextQuestion() {
     }
 }
 
+function playConfetti(){
+  const c = document.getElementById('#hearts-container');
+  c.width = c.clientWidth = c.offsetWidth;
+  c.height = c.clientHeight = c.offsetHeight;
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+  const pieces = [];
+  for(let i=0;i<80;i++){
+    pieces.push({x:Math.random()*W, y:Math.random()*H - H, r:Math.random()*6+4, vx:(Math.random()-0.5)*4, vy:Math.random()*4+2, color:`hsl(${Math.random()*360},70%,60%)`, rot:Math.random()*360});
+  }
+  let t=0;
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of pieces){
+      p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.rot += 6;
+      if(p.y>H+20) { p.y=-20; p.x=Math.random()*W; p.vy = Math.random()*3+1; }
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot* Math.PI/180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r*0.6);
+      ctx.restore();
+    }
+    t++; if(t<240) requestAnimationFrame(frame);
+    else ctx.clearRect(0,0,W,H);
+  }
+  frame();
+}
 
 loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
