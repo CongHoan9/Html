@@ -35,17 +35,13 @@ function createFloatingHearts() {
     c.width = W * dpr;
     c.height = H * dpr;
 
-    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
-    ctx.scale(dpr, dpr); // scale lại đúng tỉ lệ
+    ctx.setTransform(1, 0, 0, 1, 0, 0); 
+    ctx.scale(dpr, dpr);
 
     return { W, H };
   }
 
   let { W, H } = resizeCanvas();
-
-  window.addEventListener("resize", () => {
-    ({ W, H } = resizeCanvas());
-  });
 
   const colors = ["#ffe4e6", "#ffccd5", "#ffb6c1", "#ff99ac", "#ff7f9c"];
   const hearts = [];
@@ -61,6 +57,17 @@ function createFloatingHearts() {
       alpha: 1
     });
   }
+    
+  window.addEventListener("resize", () => {
+    const oldW = W, oldH = H;
+    ({ W, H } = resizeCanvas());
+    const scaleX = W / oldW;
+    const scaleY = H / oldH;
+    for (const h of hearts) {
+      h.x *= scaleX;
+      h.y *= scaleY;
+    }
+  });
 
   function drawHeart(ctx, x, y, size, color) {
     ctx.save();
@@ -445,22 +452,35 @@ function playConfetti() {
   const ctx = c.getContext("2d");
   const dpr = window.devicePixelRatio || 1;
 
+  let W, H;
+  const pieces = [];
+
   function resize() {
-    const W = c.offsetWidth;
-    const H = c.offsetHeight;
+    const oldW = W;
+    const oldH = H;
+
+    W = c.offsetWidth;
+    H = c.offsetHeight;
+
     c.width = W * dpr;
     c.height = H * dpr;
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
     ctx.scale(dpr, dpr);
-    return { W, H };
+
+    // scale lại vị trí các hạt nếu đã có kích thước cũ
+    if (oldW && oldH) {
+      const scaleX = W / oldW;
+      const scaleY = H / oldH;
+      for (const p of pieces) {
+        p.x *= scaleX;
+        p.y *= scaleY;
+      }
+    }
   }
 
-  let { W, H } = resize();
-  window.addEventListener("resize", () => {
-    ({ W, H } = resize());
-  });
+  resize();
+  window.addEventListener("resize", resize);
 
-  const pieces = [];
   for (let i = 0; i < 80; i++) {
     pieces.push({
       x: Math.random() * W,
@@ -507,6 +527,7 @@ function playConfetti() {
     if (active) requestAnimationFrame(frame);
     else ctx.clearRect(0, 0, W, H);
   }
+
   frame();
 }
 
@@ -514,6 +535,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
