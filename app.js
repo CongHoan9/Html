@@ -172,7 +172,7 @@ function initAudio() {
 
         const artist = document.createElement("span");
         artist.textContent = track.artist || "";
-        artist.className = "text-sm opacity-0.7";
+        artist.className = "text-sm opacity-70";
 
         textWrap.appendChild(title);
         textWrap.appendChild(artist);
@@ -385,6 +385,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
