@@ -22,18 +22,6 @@
     }
 }
 
-@keyframes shootingStar {
-    0% {
-        transform: translate(0, 0) rotate(var(--angle));
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(var(--dx), var(--dy)) rotate(var(--angle));
-        opacity: 0;
-    }
-}
-
 .animated-gradient {
     background: linear-gradient(45deg, #ffe4e6 0%, #ffccd5 25%, #ffb6c1 50%, #ff99ac 75%, #ff7f9c 100%);
     background-size: 200% 200%;
@@ -108,15 +96,15 @@
 }
 
 @keyframes swing-left {
-  0% { transform: rotate(-10deg); }
+  0% { transform: rotate(-15deg); }
   50% { transform: rotate(-5deg); }
-  100% { transform: rotate(-10deg); }
+  100% { transform: rotate(-15deg); }
 }
 
 @keyframes swing-right {
-  0% { transform: rotate(10deg); }
+  0% { transform: rotate(15deg); }
   50% { transform: rotate(5deg); }
-  100% { transform: rotate(10deg); }
+  100% { transform: rotate(15deg); }
 }
 
 .card {
@@ -242,6 +230,7 @@
     background: #16a34a;
 
 }
+
 
 
 
