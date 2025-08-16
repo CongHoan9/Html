@@ -146,6 +146,10 @@
 }
 
 .quiz-options {
+    opacity: 70%;
+}
+
+.quiz-options {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -207,6 +211,7 @@
     background: #16a34a;
 
 }
+
 
 
 
