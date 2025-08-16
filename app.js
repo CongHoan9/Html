@@ -25,27 +25,71 @@ const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
 function createFloatingHearts() {
-    const container = document.getElementById("hearts-container");
-    const colors = ["#ffe4e6", "#ffccd5", "#ffb6c1", "#ff99ac", "#ff7f9c"];
+  const c = document.getElementById("hearts-container");
+  c.width = c.offsetWidth;
+  c.height = c.offsetHeight;
+  const ctx = c.getContext("2d");
 
-    for (let i = 0; i < 10; i++) {
-        const heart = document.createElement("div");
-        heart.className = "fixed bottom-[-40px]";
-        heart.style.left = `${5 + Math.random() * 90}%`;
-        heart.style.animation = `floatUp 8s ${i * 1.5}s linear infinite`;
+  const W = c.width, H = c.height;
+  const colors = ["#ffe4e6", "#ffccd5", "#ffb6c1", "#ff99ac", "#ff7f9c"];
+  const hearts = [];
 
-        const size = 20 + Math.random() * 20;
-        const color = colors[Math.floor(Math.random() * colors.length)];
+  // Tạo 10 trái tim ban đầu
+  for (let i = 0; i < 10; i++) {
+    hearts.push({
+      x: Math.random() * W,
+      y: H + Math.random() * 100, // bắt đầu dưới đáy
+      size: 20 + Math.random() * 20,
+      speed: 0.5 + Math.random() * 1.5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      drift: (Math.random() - 0.5) * 1, // trôi ngang
+      alpha: 1
+    });
+  }
 
-        heart.innerHTML = `
-            <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}">
-                <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"/>
-            </svg>
-        `;
-        container.appendChild(heart);
+function drawHeart(ctx, x, y, size, color) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(size / 24, size / 24); // scale path gốc 24x24
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(2, 9.1371);
+    ctx.bezierCurveTo(2, 14, 6.01943, 16.5914, 8.96173, 18.9109);
+    ctx.bezierCurveTo(10, 19.7294, 11, 20.5, 12, 20.5);
+    ctx.bezierCurveTo(13, 20.5, 14, 19.7294, 15.0383, 18.9109);
+    ctx.bezierCurveTo(17.9806, 16.5914, 22, 14, 22, 9.1371);
+    ctx.bezierCurveTo(22, 4.27416, 16.4998, 0.825464, 12, 5.50063);
+    ctx.bezierCurveTo(7.50016, 0.825464, 2, 4.27416, 2, 9.1371);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    for (const h of hearts) {
+      h.y -= h.speed;    // bay lên
+      h.x += h.drift;    // trôi ngang nhẹ
+      h.alpha -= 0.001;  // mờ dần nếu muốn
+
+      ctx.globalAlpha = Math.max(h.alpha, 0);
+      drawHeart(ctx, h.x, h.y, h.size, h.color);
+      ctx.globalAlpha = 1;
+
+      // reset khi bay khỏi màn hình
+      if (h.y < -30) {
+        h.y = H + 20;
+        h.x = Math.random() * W;
+        h.size = 20 + Math.random() * 20;
+        h.speed = 0.5 + Math.random() * 1.5;
+        h.color = colors[Math.floor(Math.random() * colors.length)];
+        h.alpha = 1;
+      }
     }
+    requestAnimationFrame(frame);
+  }
+  frame();
 }
-
 
 function computeDaysTogether(dateStr) {
     const start = new Date(dateStr).getTime();
@@ -413,6 +457,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
