@@ -383,7 +383,7 @@ function nextQuestion() {
 }
 
 function playConfetti(){
-  const c = document.getElementById('#hearts-container');
+  const c = document.getElementById('hearts-container');
   c.width = c.clientWidth = c.offsetWidth;
   c.height = c.clientHeight = c.offsetHeight;
   const ctx = c.getContext('2d');
@@ -413,6 +413,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
