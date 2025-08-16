@@ -134,7 +134,7 @@ function initSlideshow() {
 function renderTickets() {
     const box = $("#tickets");
     box.innerHTML = CONFIG.tickets
-        .map(t => `<div class="rounded-2xl p-4 backdrop-blur-md border-b border-white/40 bg-white/40 shadow text-sm text-center">${t}</div>`)
+        .map(t => `<div class="card rounded-2xl p-4 backdrop-blur-md border-b border-white/40 bg-white/40 shadow text-sm text-center">${t}</div>`)
         .join("");
 }
 
@@ -385,6 +385,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
