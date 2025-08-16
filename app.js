@@ -34,15 +34,14 @@ function createFloatingHearts() {
   const colors = ["#ffe4e6", "#ffccd5", "#ffb6c1", "#ff99ac", "#ff7f9c"];
   const hearts = [];
 
-  // Tạo 10 trái tim ban đầu
   for (let i = 0; i < 10; i++) {
     hearts.push({
       x: Math.random() * W,
-      y: H + Math.random() * 100, // bắt đầu dưới đáy
+      y: H + Math.random() * 100,
       size: 20 + Math.random() * 20,
       speed: 0.5 + Math.random() * 1.5,
       color: colors[Math.floor(Math.random() * colors.length)],
-      drift: (Math.random() - 0.5) * 1, // trôi ngang
+      drift: (Math.random() - 0.5) * 1,
       alpha: 1
     });
   }
@@ -50,7 +49,7 @@ function createFloatingHearts() {
 function drawHeart(ctx, x, y, size, color) {
     ctx.save();
     ctx.translate(x, y);
-    ctx.scale(size / 24, size / 24); // scale path gốc 24x24
+    ctx.scale(size / 24, size / 24);
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.moveTo(2, 9.1371);
@@ -68,20 +67,19 @@ function drawHeart(ctx, x, y, size, color) {
   function frame() {
     ctx.clearRect(0, 0, W, H);
     for (const h of hearts) {
-      h.y -= h.speed;    // bay lên
-      h.x += h.drift;    // trôi ngang nhẹ
-      h.alpha -= 0.001;  // mờ dần nếu muốn
+      h.y -= h.speed;
+      h.x += h.drift; 
+      h.alpha -= 0.001;
 
       ctx.globalAlpha = Math.max(h.alpha, 0);
       drawHeart(ctx, h.x, h.y, h.size, h.color);
       ctx.globalAlpha = 1;
 
-      // reset khi bay khỏi màn hình
       if (h.y < -30) {
         h.y = H + 20;
         h.x = Math.random() * W;
         h.size = 20 + Math.random() * 20;
-        h.speed = 0.5 + Math.random() * 1.5;
+        h.speed = 0.5 + Math.random() * 2;
         h.color = colors[Math.floor(Math.random() * colors.length)];
         h.alpha = 1;
       }
@@ -457,6 +455,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
