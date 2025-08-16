@@ -286,8 +286,8 @@ function initCard() {
             const cy = rect.top + rect.height / 2;
             const dx = e.clientX - cx;
             const dy = e.clientY - cy;
-            const rx = (dy / rect.height) * -15;
-            const ry = (dx / rect.width) * 15;
+            const rx = (dy / rect.height) * -20;
+            const ry = (dx / rect.width) * 20;
             card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
         });
         card.addEventListener('mouseleave', function () {
@@ -385,6 +385,7 @@ loadQuiz();
 document.addEventListener("DOMContentLoaded", boot)
 
   
+
 
 
 
