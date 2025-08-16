@@ -100,11 +100,11 @@
 }
 
 .heart-left {
-  animation: swing-left 1s infinite alternate ease-in-out;
+  animation: swing-left 3s infinite alternate ease-in-out;
 }
 
 .heart-right {
-  animation: swing-right 1s infinite alternate ease-in-out;
+  animation: swing-right 3s infinite alternate ease-in-out;
 }
 
 @keyframes swing-left {
@@ -242,6 +242,7 @@
     background: #16a34a;
 
 }
+
 
 
 
